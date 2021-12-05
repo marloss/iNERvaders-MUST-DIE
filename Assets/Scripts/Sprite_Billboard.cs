@@ -20,6 +20,7 @@ public class Sprite_Billboard : MonoBehaviour
     public List<Sprite> movement_Sprite;
     public List<Sprite> Idle_Sprite;
     public List<Sprite> Attack_Sprite;
+    public List<Sprite> Stagger_Sprite; //Fix syntax small
     public List<Sprite> Death_Sprite;
     [Space]
     [Header("Sprites for non-directionectional Billboard")]
