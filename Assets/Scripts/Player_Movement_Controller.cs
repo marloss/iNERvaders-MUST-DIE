@@ -14,6 +14,8 @@ public class Player_Movement_Controller : MonoBehaviour
     public CharacterController player_controller;
     [Space]
     public float movement_speed;
+    [Space(20)]
+    public Camera main_camera;
 
     private void Start()
     {
@@ -23,6 +25,7 @@ public class Player_Movement_Controller : MonoBehaviour
     void Update()
     {
         Fetch_Player_Input();
+        main_camera.transform.position = new Vector3(this.transform.position.x, main_camera.transform.position.y, this.transform.position.z);
     }
 
     private void FixedUpdate()
@@ -48,5 +51,6 @@ public class Player_Movement_Controller : MonoBehaviour
     private void Set_Default_Properties()
     {
         player_controller = GetComponent<CharacterController>();
+        main_camera = GetComponentInChildren<Camera>();
     }
 }

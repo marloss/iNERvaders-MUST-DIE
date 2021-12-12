@@ -5,6 +5,7 @@ using UnityEngine;
 public class Sprite_Billboard : MonoBehaviour
 {
     public Enemy_Behavior enemy_Behavior_script;
+    public GameObject target;
     [Space]
     public SpriteRenderer _spriteRenderer;
     [Space]
@@ -29,8 +30,12 @@ public class Sprite_Billboard : MonoBehaviour
     private void Start()
     {
         enemy_Behavior_script = GetComponent<Enemy_Behavior>();
+        if (enemy_Behavior_script == null)
+            target = GameObject.FindGameObjectWithTag("Player");
+        else
+            target = enemy_Behavior_script.player;
         isDirectionalSprite = dormant_Sprite.Count > 0 && movement_Sprite.Count > 0;
-        Set_Sprite_List(movement_Sprite, "movement_sprite_swap"); //Placeholder
+        if (isDirectionalSprite) Set_Sprite_List(movement_Sprite, "movement_sprite_swap"); //Placeholder
     }
 
     private void LateUpdate()
@@ -47,7 +52,7 @@ public class Sprite_Billboard : MonoBehaviour
 
     private void Set_Animation_Properties()
     {
-        _spriteRenderer.gameObject.transform.LookAt(enemy_Behavior_script.player.transform.position);
+        _spriteRenderer.gameObject.transform.LookAt(target.transform.position);
         switch (isDirectionalSprite)
         {
             case true:
