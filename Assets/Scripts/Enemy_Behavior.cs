@@ -20,4 +20,15 @@ public class Enemy_Behavior : MonoBehaviour
     {
         sprite_Billboard = GetComponent<Sprite_Billboard>();
     }
+
+    public void Absorb_Damage(float damage, bool stagger)
+    {
+        Damage(damage, stagger);
+    }
+
+    private void Damage(float damage, bool stagger)
+    {
+        current_health -= damage;
+        //Does damage stagger? if so, activate stagger animation
+    }
 }
